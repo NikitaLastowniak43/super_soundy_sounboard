@@ -21,6 +21,49 @@ def draw_text(text,font,color,screen,x,y):
     screen.blit(points_text, [x,y])
 
 
+def Game():
+    # fonts
+    super_small_font = pygame.font.SysFont(None, 16)
+    small_font = pygame.font.SysFont(None, 36)
+    mid_font = pygame.font.SysFont(None, 52)
+    large_font = pygame.font.SysFont(None, 80)
+
+    screen_works = True
+    while screen_works:
+        events = pygame.event.get()
+        for event in events:
+            if event.type == pygame.QUIT:
+                screen_works = False
+
+        screen.fill(back_ground)
+
+        #texts, buttons and figures
+        mouse_cord = pygame.mouse.get_pos()
+
+        pygame.draw.polygon(screen, white, ((10, 27), (25, 12), (39, 27)))
+        rect_for_house = pygame.Rect(15, 27, 20, 20)
+        pygame.draw.rect(screen, white, rect_for_house)
+        window_for_house = pygame.Rect(17, 31, 6, 6)
+        pygame.draw.rect(screen, gray, window_for_house)
+        door_for_house = pygame.Rect(25, 31, 8, 16)
+        pygame.draw.rect(screen, gray, door_for_house)
+
+        #interactions
+        if mouse_cord[0] > 12 and mouse_cord[0] < 41:
+            if mouse_cord[1] > 10 and mouse_cord[1] < 47:
+                pygame.draw.polygon(screen, gray, ((10, 27), (25, 12), (39, 27)))
+                pygame.draw.rect(screen, gray, rect_for_house)
+                pygame.draw.rect(screen, black, window_for_house)
+                pygame.draw.rect(screen, black, door_for_house)
+                if pygame.mouse.get_pressed()[0]:
+                    screen_works = False
+
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_ESCAPE]:
+            screen_works = False
+
+        pygame.display.flip()
+
 def Menu():
     #fonts
     super_small_font = pygame.font.SysFont(None, 16)
@@ -64,12 +107,11 @@ def Menu():
                 pygame.draw.rect(screen, gray, frame_for_start_button, 2)
                 draw_text("Start", large_font, gray, screen, 30, 160)
                 if pygame.mouse.get_pressed()[0]:
-                    secret = pygame.mixer.Sound("fart-83471.mp3")
-                    secret.play()
+                    Game()
 
         #if keys are pressed
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_q]:
+        if keys[pygame.K_ESCAPE]:
             screen_works = False
             pygame.quit()
             sys.exit()
