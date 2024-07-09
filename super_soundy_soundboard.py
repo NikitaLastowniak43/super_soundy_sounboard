@@ -48,8 +48,22 @@ def Game():
         door_for_house = pygame.Rect(25, 31, 8, 16)
         pygame.draw.rect(screen, gray, door_for_house)
 
-        rect_for_note1 = pygame.Rect(15, 350, 100, screen_size[1]-350)
+        rect_for_note1 = pygame.Rect(30, 350, 80, screen_size[1]-350)
         pygame.draw.rect(screen, white, rect_for_note1)
+        rect_for_note2 = pygame.Rect(130, 350, 80, screen_size[1] - 350)
+        pygame.draw.rect(screen, white, rect_for_note2)
+        rect_for_note3 = pygame.Rect(230, 350, 80, screen_size[1] - 350)
+        pygame.draw.rect(screen, white, rect_for_note3)
+        rect_for_note4 = pygame.Rect(330, 350, 80, screen_size[1] - 350)
+        pygame.draw.rect(screen, white, rect_for_note4)
+        rect_for_note5 = pygame.Rect(430, 350, 80, screen_size[1] - 350)
+        pygame.draw.rect(screen, white, rect_for_note5)
+        rect_for_note6 = pygame.Rect(530, 350, 80, screen_size[1] - 350)
+        pygame.draw.rect(screen, white, rect_for_note6)
+        rect_for_note7 = pygame.Rect(630, 350, 80, screen_size[1] - 350)
+        pygame.draw.rect(screen, white, rect_for_note7)
+        rect_for_note8 = pygame.Rect(730, 350, 80, screen_size[1] - 350)
+        pygame.draw.rect(screen, white, rect_for_note8)
 
         #interactions
         if mouse_cord[0] > 12 and mouse_cord[0] < 41:
@@ -78,12 +92,59 @@ def Game():
             sound_mode = 3
 
         if sound_mode == 1:
-            draw_text("Guitar mode", mid_font, white, screen, 15, 70)
+            draw_text("Guitar mode", mid_font, white, screen, 500, 300)
         elif sound_mode == 2:
-            draw_text("Bass guitar mode", mid_font, white, screen, 15, 70)
+            draw_text("Piano mode", mid_font, white, screen, 500, 300)
         else:
-            draw_text("Drum mode", mid_font, white, screen, 15, 70)
+            draw_text("Drum mode", mid_font, white, screen, 500, 300)
 
+        if keys[pygame.K_a]:
+            pygame.draw.rect(screen, gray, rect_for_note1)
+            if sound_mode == 1:
+                guitar1 = pygame.mixer.Sound("slap_bass1.mp3")
+                guitar1.play()
+
+        if keys[pygame.K_s]:
+            pygame.draw.rect(screen, gray, rect_for_note2)
+            if sound_mode == 1:
+                guitar2 = pygame.mixer.Sound("slap_bass2.mp3")
+                guitar2.play()
+
+        if keys[pygame.K_d]:
+            pygame.draw.rect(screen, gray, rect_for_note3)
+            if sound_mode == 1:
+                guitar3 = pygame.mixer.Sound("slap_bass3.mp3")
+                guitar3.play()
+
+        if keys[pygame.K_f]:
+            pygame.draw.rect(screen, gray, rect_for_note4)
+            if sound_mode == 1:
+                guitar4 = pygame.mixer.Sound("slap_bass4.mp3")
+                guitar4.play()
+
+        if keys[pygame.K_g]:
+            pygame.draw.rect(screen, gray, rect_for_note5)
+            if sound_mode == 1:
+                guitar5 = pygame.mixer.Sound("slap_bass5.mp3")
+                guitar5.play()
+
+        if keys[pygame.K_h]:
+            pygame.draw.rect(screen, gray, rect_for_note6)
+            if sound_mode == 1:
+                guitar6 = pygame.mixer.Sound("slap_bass6.mp3")
+                guitar6.play()
+
+        if keys[pygame.K_j]:
+            pygame.draw.rect(screen, gray, rect_for_note7)
+            if sound_mode == 1:
+                guitar7 = pygame.mixer.Sound("slap_bass7.mp3")
+                guitar7.play()
+
+        if keys[pygame.K_k]:
+            pygame.draw.rect(screen, gray, rect_for_note8)
+            if sound_mode == 1:
+                guitar8 = pygame.mixer.Sound("slap_bass8.mp3")
+                guitar8.play()
 
         if keys[pygame.K_ESCAPE]:
             screen_works = False
@@ -137,7 +198,7 @@ def Menu():
 
         #if keys are pressed
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_ESCAPE]:
+        if keys[pygame.K_q]:
             screen_works = False
             pygame.quit()
             sys.exit()
