@@ -65,6 +65,26 @@ def Game():
         rect_for_note8 = pygame.Rect(730, 350, 80, screen_size[1] - 350)
         pygame.draw.rect(screen, white, rect_for_note8)
 
+        if sound_mode != 4:
+            draw_text("A", large_font, black, screen, 50, 400)
+            draw_text("S", large_font, black, screen, 150, 400)
+            draw_text("D", large_font, black, screen, 250, 400)
+            draw_text("F", large_font, black, screen, 350, 400)
+            draw_text("G", large_font, black, screen, 450, 400)
+            draw_text("H", large_font, black, screen, 550, 400)
+            draw_text("J", large_font, black, screen, 650, 400)
+            draw_text("K", large_font, black, screen, 750, 400)
+        else:
+            draw_text("SuS", mid_font, black, screen, 35, 410)
+            draw_text("S", mid_font, black, screen, 150, 410)
+            draw_text("D", mid_font, black, screen, 250, 410)
+            draw_text("F", mid_font, black, screen, 350, 410)
+            draw_text("G", mid_font, black, screen, 450, 410)
+            draw_text("H", mid_font, black, screen, 550, 410)
+            draw_text("J", mid_font, black, screen, 650, 410)
+            draw_text("K", mid_font, black, screen, 750, 410)
+
+
         #interactions
         if mouse_cord[0] > 12 and mouse_cord[0] < 41:
             if mouse_cord[1] > 10 and mouse_cord[1] < 47:
@@ -77,7 +97,7 @@ def Game():
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LALT]:
-            if sound_mode == 3:
+            if sound_mode == 4:
                 sound_mode = 1
             else:
                 sound_mode = sound_mode + 1
@@ -91,12 +111,17 @@ def Game():
         if keys[pygame.K_3]:
             sound_mode = 3
 
+        if keys[pygame.K_4]:
+            sound_mode = 4
+
         if sound_mode == 1:
             draw_text("Guitar mode", mid_font, white, screen, 320, 300)
         elif sound_mode == 2:
             draw_text("Piano mode", mid_font, white, screen, 320, 300)
-        else:
+        elif sound_mode == 3:
             draw_text("Drum mode", mid_font, white, screen, 320, 300)
+        else:
+            draw_text("Goofy mode", mid_font, white, screen, 320, 300)
 
         if keys[pygame.K_a]:
             pygame.draw.rect(screen, gray, rect_for_note1)
@@ -108,6 +133,9 @@ def Game():
                 note1.play()
             elif sound_mode == 3:
                 note1 = pygame.mixer.Sound("drum1.mp3")
+                note1.play()
+            elif sound_mode == 4:
+                note1 = pygame.mixer.Sound("among-us.mp3")
                 note1.play()
 
         if keys[pygame.K_s]:
