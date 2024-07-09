@@ -20,13 +20,13 @@ def draw_text(text,font,color,screen,x,y):
     points_text = font.render(text,True,color)
     screen.blit(points_text, [x,y])
 
-
 def Game():
     # fonts
     super_small_font = pygame.font.SysFont(None, 16)
     small_font = pygame.font.SysFont(None, 36)
     mid_font = pygame.font.SysFont(None, 52)
     large_font = pygame.font.SysFont(None, 80)
+    sound_mode = 1
 
     screen_works = True
     while screen_works:
@@ -37,7 +37,7 @@ def Game():
 
         screen.fill(back_ground)
 
-        #texts, buttons and figures
+        #texts and figures
         mouse_cord = pygame.mouse.get_pos()
 
         pygame.draw.polygon(screen, white, ((10, 27), (25, 12), (39, 27)))
@@ -47,6 +47,9 @@ def Game():
         pygame.draw.rect(screen, gray, window_for_house)
         door_for_house = pygame.Rect(25, 31, 8, 16)
         pygame.draw.rect(screen, gray, door_for_house)
+
+        rect_for_note1 = pygame.Rect(15, 350, 100, screen_size[1]-350)
+        pygame.draw.rect(screen, white, rect_for_note1)
 
         #interactions
         if mouse_cord[0] > 12 and mouse_cord[0] < 41:
@@ -59,6 +62,29 @@ def Game():
                     screen_works = False
 
         keys = pygame.key.get_pressed()
+        if keys[pygame.K_LALT]:
+            if sound_mode == 3:
+                sound_mode = 1
+            else:
+                sound_mode = sound_mode + 1
+
+        if keys[pygame.K_1]:
+            sound_mode = 1
+
+        if keys[pygame.K_2]:
+            sound_mode = 2
+
+        if keys[pygame.K_3]:
+            sound_mode = 3
+
+        if sound_mode == 1:
+            draw_text("Guitar mode", mid_font, white, screen, 15, 70)
+        elif sound_mode == 2:
+            draw_text("Bass guitar mode", mid_font, white, screen, 15, 70)
+        else:
+            draw_text("Drum mode", mid_font, white, screen, 15, 70)
+
+
         if keys[pygame.K_ESCAPE]:
             screen_works = False
 
