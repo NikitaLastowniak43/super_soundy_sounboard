@@ -92,59 +92,107 @@ def Game():
             sound_mode = 3
 
         if sound_mode == 1:
-            draw_text("Guitar mode", mid_font, white, screen, 500, 300)
+            draw_text("Guitar mode", mid_font, white, screen, 320, 300)
         elif sound_mode == 2:
-            draw_text("Piano mode", mid_font, white, screen, 500, 300)
+            draw_text("Piano mode", mid_font, white, screen, 320, 300)
         else:
-            draw_text("Drum mode", mid_font, white, screen, 500, 300)
+            draw_text("Drum mode", mid_font, white, screen, 320, 300)
 
         if keys[pygame.K_a]:
             pygame.draw.rect(screen, gray, rect_for_note1)
             if sound_mode == 1:
-                guitar1 = pygame.mixer.Sound("slap_bass1.mp3")
-                guitar1.play()
+                note1 = pygame.mixer.Sound("slap_bass1.mp3")
+                note1.play()
+            elif sound_mode == 2:
+                note1 = pygame.mixer.Sound("piano1.mp3")
+                note1.play()
+            elif sound_mode == 3:
+                note1 = pygame.mixer.Sound("drum1.mp3")
+                note1.play()
 
         if keys[pygame.K_s]:
             pygame.draw.rect(screen, gray, rect_for_note2)
             if sound_mode == 1:
-                guitar2 = pygame.mixer.Sound("slap_bass2.mp3")
-                guitar2.play()
+                note2 = pygame.mixer.Sound("slap_bass2.mp3")
+                note2.play()
+            elif sound_mode == 2:
+                note2 = pygame.mixer.Sound("piano2.mp3")
+                note2.play()
+            elif sound_mode == 3:
+                note2 = pygame.mixer.Sound("drum2.mp3")
+                note2.play()
 
         if keys[pygame.K_d]:
             pygame.draw.rect(screen, gray, rect_for_note3)
             if sound_mode == 1:
-                guitar3 = pygame.mixer.Sound("slap_bass3.mp3")
-                guitar3.play()
+                note3 = pygame.mixer.Sound("slap_bass3.mp3")
+                note3.play()
+            elif sound_mode == 2:
+                note3 = pygame.mixer.Sound("piano3.mp3")
+                note3.play()
+            elif sound_mode == 3:
+                note3 = pygame.mixer.Sound("drum3.mp3")
+                note3.play()
 
         if keys[pygame.K_f]:
             pygame.draw.rect(screen, gray, rect_for_note4)
             if sound_mode == 1:
-                guitar4 = pygame.mixer.Sound("slap_bass4.mp3")
-                guitar4.play()
+                note4 = pygame.mixer.Sound("slap_bass4.mp3")
+                note4.play()
+            elif sound_mode == 2:
+                note4 = pygame.mixer.Sound("piano4.mp3")
+                note4.play()
+            elif sound_mode == 3:
+                note4 = pygame.mixer.Sound("drum4.mp3")
+                note4.play()
 
         if keys[pygame.K_g]:
             pygame.draw.rect(screen, gray, rect_for_note5)
             if sound_mode == 1:
-                guitar5 = pygame.mixer.Sound("slap_bass5.mp3")
-                guitar5.play()
+                note5 = pygame.mixer.Sound("slap_bass5.mp3")
+                note5.play()
+            elif sound_mode == 2:
+                note5 = pygame.mixer.Sound("piano5.mp3")
+                note5.play()
+            elif sound_mode == 3:
+                note5 = pygame.mixer.Sound("drum5.mp3")
+                note5.play()
 
         if keys[pygame.K_h]:
             pygame.draw.rect(screen, gray, rect_for_note6)
             if sound_mode == 1:
-                guitar6 = pygame.mixer.Sound("slap_bass6.mp3")
-                guitar6.play()
+                note6 = pygame.mixer.Sound("slap_bass6.mp3")
+                note6.play()
+            elif sound_mode == 2:
+                note6 = pygame.mixer.Sound("piano6.mp3")
+                note6.play()
+            elif sound_mode == 3:
+                note6 = pygame.mixer.Sound("drum6.mp3")
+                note6.play()
 
         if keys[pygame.K_j]:
             pygame.draw.rect(screen, gray, rect_for_note7)
             if sound_mode == 1:
-                guitar7 = pygame.mixer.Sound("slap_bass7.mp3")
-                guitar7.play()
+                note7 = pygame.mixer.Sound("slap_bass7.mp3")
+                note7.play()
+            elif sound_mode == 2:
+                note7 = pygame.mixer.Sound("piano7.mp3")
+                note7.play()
+            elif sound_mode == 3:
+                note7 = pygame.mixer.Sound("drum7.mp3")
+                note7.play()
 
         if keys[pygame.K_k]:
             pygame.draw.rect(screen, gray, rect_for_note8)
             if sound_mode == 1:
-                guitar8 = pygame.mixer.Sound("slap_bass8.mp3")
-                guitar8.play()
+                note8 = pygame.mixer.Sound("slap_bass8.mp3")
+                note8.play()
+            elif sound_mode == 2:
+                note8 = pygame.mixer.Sound("piano8.mp3")
+                note8.play()
+            elif sound_mode == 3:
+                note8 = pygame.mixer.Sound("drum8.mp3")
+                note8.play()
 
         if keys[pygame.K_ESCAPE]:
             screen_works = False
