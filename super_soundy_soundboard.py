@@ -76,11 +76,11 @@ def Game():
             draw_text("K", large_font, black, screen, 750, 400)
         else:
             draw_text("SuS", mid_font, black, screen, 35, 410)
-            draw_text("S", mid_font, black, screen, 150, 410)
-            draw_text("D", mid_font, black, screen, 250, 410)
-            draw_text("F", mid_font, black, screen, 350, 410)
-            draw_text("G", mid_font, black, screen, 450, 410)
-            draw_text("H", mid_font, black, screen, 550, 410)
+            draw_text("Vine", mid_font, black, screen, 133, 410)
+            draw_text("Gas", mid_font, black, screen, 235, 410)
+            draw_text("Bleh", mid_font, black, screen, 330, 410)
+            draw_text("Otis", mid_font, black, screen, 433, 410)
+            draw_text("Need", mid_font, black, screen, 528, 410)
             draw_text("J", mid_font, black, screen, 650, 410)
             draw_text("K", mid_font, black, screen, 750, 410)
 
@@ -149,6 +149,9 @@ def Game():
             elif sound_mode == 3:
                 note2 = pygame.mixer.Sound("drum2.mp3")
                 note2.play()
+            elif sound_mode == 4:
+                note2 = pygame.mixer.Sound("vine-boom.mp3")
+                note2.play()
 
         if keys[pygame.K_d]:
             pygame.draw.rect(screen, gray, rect_for_note3)
@@ -160,6 +163,9 @@ def Game():
                 note3.play()
             elif sound_mode == 3:
                 note3 = pygame.mixer.Sound("drum3.mp3")
+                note3.play()
+            elif sound_mode == 4:
+                note3 = pygame.mixer.Sound("fart-83471.mp3")
                 note3.play()
 
         if keys[pygame.K_f]:
@@ -173,6 +179,9 @@ def Game():
             elif sound_mode == 3:
                 note4 = pygame.mixer.Sound("drum4.mp3")
                 note4.play()
+            elif sound_mode == 4:
+                note4 = pygame.mixer.Sound("bleh bleh bleh.mp3")
+                note4.play()
 
         if keys[pygame.K_g]:
             pygame.draw.rect(screen, gray, rect_for_note5)
@@ -185,6 +194,9 @@ def Game():
             elif sound_mode == 3:
                 note5 = pygame.mixer.Sound("drum5.mp3")
                 note5.play()
+            elif sound_mode == 4:
+                note5 = pygame.mixer.Sound("Otis.mp3")
+                note5.play()
 
         if keys[pygame.K_h]:
             pygame.draw.rect(screen, gray, rect_for_note6)
@@ -196,6 +208,9 @@ def Game():
                 note6.play()
             elif sound_mode == 3:
                 note6 = pygame.mixer.Sound("drum6.mp3")
+                note6.play()
+            elif sound_mode == 4:
+                note6 = pygame.mixer.Sound("i-need-more-bullets.mp3")
                 note6.play()
 
         if keys[pygame.K_j]:
@@ -282,4 +297,3 @@ def Menu():
         pygame.display.flip()
 
 Menu()
-
