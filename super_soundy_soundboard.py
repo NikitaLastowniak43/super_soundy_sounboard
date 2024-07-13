@@ -1,6 +1,5 @@
 import pygame
 import sys
-import time
 
 
 #colors
@@ -22,8 +21,6 @@ def draw_text(text,font,color,screen,x,y):
 
 def Game():
     # fonts
-    super_small_font = pygame.font.SysFont(None, 16)
-    small_font = pygame.font.SysFont(None, 36)
     mid_font = pygame.font.SysFont(None, 52)
     large_font = pygame.font.SysFont(None, 80)
     sound_mode = 1
@@ -64,6 +61,9 @@ def Game():
         pygame.draw.rect(screen, white, rect_for_note7)
         rect_for_note8 = pygame.Rect(730, 350, 80, screen_size[1] - 350)
         pygame.draw.rect(screen, white, rect_for_note8)
+
+        pygame.draw.polygon(screen, white, ((270, 340), (310, 290), (540, 290),(580, 340)), 5)
+        pygame.draw.line(screen, white, (0, 340), (screen_size[0], 340), 5)
 
         if sound_mode != 4:
             draw_text("A", large_font, black, screen, 50, 400)
@@ -242,10 +242,76 @@ def Game():
 
         pygame.display.flip()
 
+
+def settings():
+    mid_font = pygame.font.SysFont(None, 52)
+    background_changer = 0
+
+    screen_works = True
+    while screen_works:
+        events = pygame.event.get()
+        for event in events:
+            if event.type == pygame.QUIT:
+                screen_works = False
+
+        screen.fill(back_ground)
+
+
+        # texts and figures
+        pygame.draw.polygon(screen, white, ((10, 27), (25, 12), (39, 27)))
+        rect_for_house = pygame.Rect(15, 27, 20, 20)
+        pygame.draw.rect(screen, white, rect_for_house)
+        window_for_house = pygame.Rect(17, 31, 6, 6)
+        pygame.draw.rect(screen, gray, window_for_house)
+        door_for_house = pygame.Rect(25, 31, 8, 16)
+        pygame.draw.rect(screen, gray, door_for_house)
+
+
+        frame_for_change_background = pygame.Rect(10, 80, 220, 50)
+        pygame.draw.rect(screen, white, frame_for_change_background, 2)
+        draw_text("Background", mid_font, white, screen, 20, 90)
+
+        frame_for_backgrounds = pygame.Rect(300, 80, 480, 50)
+
+
+        # interactions
+        mouse_cord = pygame.mouse.get_pos()
+        if mouse_cord[0] > 12 and mouse_cord[0] < 41:
+            if mouse_cord[1] > 10 and mouse_cord[1] < 47:
+                pygame.draw.polygon(screen, gray, ((10, 27), (25, 12), (39, 27)))
+                pygame.draw.rect(screen, gray, rect_for_house)
+                pygame.draw.rect(screen, black, window_for_house)
+                pygame.draw.rect(screen, black, door_for_house)
+                if pygame.mouse.get_pressed()[0]:
+                    screen_works = False
+
+
+        if mouse_cord[0] > 10 and mouse_cord[0] < 228:
+            if mouse_cord[1] > 80 and mouse_cord[1] < 133:
+                pygame.draw.rect(screen, gray, frame_for_change_background, 2)
+                draw_text("Background", mid_font, gray, screen, 20, 90)
+                if pygame.mouse.get_pressed()[0]:
+                    if background_changer == 0:
+                        background_changer = 1
+                    else:
+                        background_changer = 0
+
+        if background_changer == 1:
+            pygame.draw.rect(screen, white, frame_for_backgrounds, 2)
+
+
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_ESCAPE]:
+            screen_works = False
+            pygame.quit()
+            sys.exit()
+
+        pygame.display.flip()
+
+
 def Menu():
     #fonts
     super_small_font = pygame.font.SysFont(None, 16)
-    small_font = pygame.font.SysFont(None, 36)
     mid_font = pygame.font.SysFont(None, 52)
     large_font = pygame.font.SysFont(None, 80)
 
@@ -258,18 +324,27 @@ def Menu():
 
         screen.fill(back_ground)
 
+
         #texts, buttons and figures
         mouse_cord = pygame.mouse.get_pos()
 
         frame_for_name = pygame.Rect(10, 40, 600, 50)
         pygame.draw.rect(screen, white, frame_for_name, 2)
         draw_text("Super Soundy Soundboard", mid_font, white, screen, 30, 50)
-        draw_text("totaly NOT a button", super_small_font, white, screen, 490, 68)
+        draw_text("totally NOT a button", super_small_font, white, screen, 490, 68)
 
 
         frame_for_start_button = pygame.Rect(10, 155, 170, 60)
         pygame.draw.rect(screen, white, frame_for_start_button, 2)
         draw_text("Start", large_font, white, screen, 30, 160)
+
+        frame_for_settings_button = pygame.Rect(10, 250, 250, 68)
+        pygame.draw.rect(screen, white, frame_for_settings_button, 2)
+        draw_text("Settings", large_font, white, screen, 20, 258)
+
+        frame_for_quit_button = pygame.Rect(10, 355, 140, 60)
+        pygame.draw.rect(screen, white, frame_for_quit_button, 2)
+        draw_text("Quit", large_font, white, screen, 20, 360)
 
         #interaction with menu NOT button
         if mouse_cord[0] > 50 and mouse_cord[0] < 500:
@@ -286,6 +361,25 @@ def Menu():
                 draw_text("Start", large_font, gray, screen, 30, 160)
                 if pygame.mouse.get_pressed()[0]:
                     Game()
+
+        # interaction with settings button
+        if mouse_cord[0] > 10 and mouse_cord[0] < 260:
+            if mouse_cord[1] > 250 and mouse_cord[1] < 318:
+                pygame.draw.rect(screen, gray, frame_for_settings_button, 2)
+                draw_text("Settings", large_font, gray, screen, 20, 258)
+                if pygame.mouse.get_pressed()[0]:
+                    settings()
+
+        #interaction with quit button
+        if mouse_cord[0] > 10 and mouse_cord[0] < 150:
+            if mouse_cord[1] > 353 and mouse_cord[1] < 413:
+                pygame.draw.rect(screen, gray, frame_for_quit_button, 2)
+                draw_text("Quit", large_font, gray, screen, 20, 360)
+                if pygame.mouse.get_pressed()[0]:
+                    screen_works = False
+                    pygame.quit()
+                    sys.exit()
+
 
         #if keys are pressed
         keys = pygame.key.get_pressed()
