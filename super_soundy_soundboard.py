@@ -1,15 +1,22 @@
 import pygame
 import sys
+import time
 
+clock=pygame.time.Clock()
 
 #colors
+green = [0, 140, 0]
+yellow = [180, 190, 0]
+purple = [127, 0, 127]
 black = [0, 0, 0]
 white = [255, 255, 255]
-gray = [150,150,150]
-back_ground = [60,100,160]
+gray = [150, 150, 150]
+blue = [60, 100, 160]
+back_ground = [60, 100, 160]
 
+lastly_pressed = time.time()
 
-screen_size=[840,480]
+screen_size=[840, 480]
 pygame.init()
 screen=pygame.display.set_mode(screen_size)
 background_color=black
@@ -20,6 +27,7 @@ def draw_text(text,font,color,screen,x,y):
     screen.blit(points_text, [x,y])
 
 def Game():
+    global lastly_pressed
     # fonts
     mid_font = pygame.font.SysFont(None, 52)
     large_font = pygame.font.SysFont(None, 80)
@@ -96,7 +104,8 @@ def Game():
                     screen_works = False
 
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_LALT]:
+        if keys[pygame.K_LALT] and time.time() - lastly_pressed > 0.3:
+            lastly_pressed = time.time()
             if sound_mode == 4:
                 sound_mode = 1
             else:
@@ -241,9 +250,12 @@ def Game():
             screen_works = False
 
         pygame.display.flip()
+        clock.tick(20)
 
 
 def settings():
+    global lastly_pressed
+    global back_ground
     mid_font = pygame.font.SysFont(None, 52)
     background_changer = 0
 
@@ -271,8 +283,22 @@ def settings():
         pygame.draw.rect(screen, white, frame_for_change_background, 2)
         draw_text("Background", mid_font, white, screen, 20, 90)
 
-        frame_for_backgrounds = pygame.Rect(300, 80, 480, 50)
+        frame_for_backgrounds = pygame.Rect(300, 80, 460, 50)
 
+        first_background_button_frame = pygame.Rect(310, 90, 80, 30)
+        first_background_button = pygame.Rect(310, 90, 80, 30)
+
+        second_background_button_frame = pygame.Rect(400, 90, 80, 30)
+        second_background_button = pygame.Rect(400, 90, 80, 30)
+
+        third_background_button_frame = pygame.Rect(490, 90, 80, 30)
+        third_background_button = pygame.Rect(490, 90, 80, 30)
+
+        fourth_background_button_frame = pygame.Rect(580, 90, 80, 30)
+        fourth_background_button = pygame.Rect(580, 90, 80, 30)
+
+        fifth_background_button_frame = pygame.Rect(670, 90, 80, 30)
+        fifth_background_button = pygame.Rect(670, 90, 80, 30)
 
         # interactions
         mouse_cord = pygame.mouse.get_pos()
@@ -290,23 +316,61 @@ def settings():
             if mouse_cord[1] > 80 and mouse_cord[1] < 133:
                 pygame.draw.rect(screen, gray, frame_for_change_background, 2)
                 draw_text("Background", mid_font, gray, screen, 20, 90)
-                if pygame.mouse.get_pressed()[0]:
+                if pygame.mouse.get_pressed()[0] and time.time() - lastly_pressed > 0.2:
+                    lastly_pressed = time.time()
                     if background_changer == 0:
                         background_changer = 1
                     else:
                         background_changer = 0
 
+        keys = pygame.key.get_pressed()
         if background_changer == 1:
             pygame.draw.rect(screen, white, frame_for_backgrounds, 2)
 
+            pygame.draw.rect(screen, black, first_background_button)
+            pygame.draw.rect(screen, white, first_background_button_frame, 2)
 
-        keys = pygame.key.get_pressed()
+            pygame.draw.rect(screen, blue, second_background_button)
+            pygame.draw.rect(screen, white, second_background_button_frame, 2)
+
+            pygame.draw.rect(screen, yellow, third_background_button)
+            pygame.draw.rect(screen, white, third_background_button_frame, 2)
+
+            pygame.draw.rect(screen, purple, fourth_background_button)
+            pygame.draw.rect(screen, white, fourth_background_button_frame, 2)
+
+            pygame.draw.rect(screen, green, fifth_background_button)
+            pygame.draw.rect(screen, white, fifth_background_button_frame, 2)
+            if mouse_cord[0] > 310 and mouse_cord[0] < 390:
+                if mouse_cord[1] > 90 and mouse_cord[1] < 120:
+                    if pygame.mouse.get_pressed()[0]:
+                        back_ground = black
+            if mouse_cord[0] > 400 and mouse_cord[0] < 480:
+                if mouse_cord[1] > 90 and mouse_cord[1] < 120:
+                    if pygame.mouse.get_pressed()[0]:
+                        back_ground = blue
+            if mouse_cord[0] > 490 and mouse_cord[0] < 570:
+                if mouse_cord[1] > 90 and mouse_cord[1] < 120:
+                    if pygame.mouse.get_pressed()[0]:
+                        back_ground = yellow
+            if mouse_cord[0] > 580 and mouse_cord[0] < 670:
+                if mouse_cord[1] > 90 and mouse_cord[1] < 120:
+                    if pygame.mouse.get_pressed()[0]:
+                        back_ground = purple
+            if mouse_cord[0] > 680 and mouse_cord[0] < 770:
+                if mouse_cord[1] > 90 and mouse_cord[1] < 120:
+                    if pygame.mouse.get_pressed()[0]:
+                        back_ground = green
+
+
+
         if keys[pygame.K_ESCAPE]:
             screen_works = False
             pygame.quit()
             sys.exit()
 
         pygame.display.flip()
+        clock.tick(20)
 
 
 def Menu():
